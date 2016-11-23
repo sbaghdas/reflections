@@ -120,7 +120,8 @@ remote - remote repository with known location
 
 git remote : shows current remotes
 git remote -v : shows remotes with their URLs
-git remote add <remote name> <url> : 
+git remote add <remote name> <url> : adds remote
+git push <remote name> <branch name> : push a branch to remote
 
 
 
