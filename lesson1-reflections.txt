@@ -1,0 +1,142 @@
+?How did viewing a diff between two versions of a file help you see the bug that was introduced?
+>Filters unchanged parts of the file
+
+Google Docs shows history of changes to the document
+
+git log : shows commit history
+git diff <old commit id/branch name> <new commit id/branch name> : compare commits or branches. Branch is just a label on a commit
+
+?What do you think are the pros and cons of manually choosing when to create a commit, like you do in Git, vs having versions automatically saved, like Google Docs does?
+>You control size and timing of your commits
+
+repository - collection of files
+commit is a snapshot of the whole repository
+
+git log --stat : shows stats for each commit (how many files changed and number of insertions and deletions per file)
+
+?Why do you think some version control systems, like Git, allow saving multiple files in one commit, while others, like Google Docs, treat each file separately?
+>Files in a commit reference each other and changes to them comprise one functional change
+
+git --version
+git clone <repository URL> : copy the entire repository (including history) to local workstation
+git config --global color.ui auto : enables colored diff
+
+?How can you use the commands git log and git diff to view the history of files?
+>git log will show commit history and git diff will show changes inside the commits
+
+octopus : GIT strategy to combine many different versions of code together 
+HEAD : commit you are currently on
+detached HEAD : when user switches to previous commits
+
+git checkout <commit id> - switching to a version of the repository at the time specified commit was made
+
+?How might using version control make you more confident to make changes that could break something?
+>You can always rollback changes
+
+git config --global core.editor "subl -n -w"
+git config --global push.default upstream
+git config --global merge.conflictstyle diff3
+
+?Now that you have your workspace set up, what do you want to try using Git for?
+Save a document
+
+git init : initializes new git repository, creates .git directory
+
+ls -a : will show all files and directories including hidden ones (.git)
+
+?What happens when you initialize a repository? Why do you need to do it?
+> Creates and nre repository and .git directory to store repo history
+
+git add <files> : adds file(s) into staging area
+
+Staging area is where you add files to be committed
+
+?How is the staging area different from the working directory and the repository? What value do you think it offers?
+>Staging area contains files that will be part of the next commit while working directory might contain more files. Repository contains changes already committed while staging are has not been committed yet. Staging area offers intermediate state which allows to define which files will be in the next commit.
+
+git commit -m "Commit message" : commits changes without opening editor to input commit message
+
+git diff : shows changes that were not added into staging area yet (compares working directory with staging area)
+
+git diff --staged : shows difference between staging area and the repository (compares staging area with the last commit in reposotory)
+
+git reset --hard : discards changes in staging area and working directory, keeps untracked files untouched. This action is inreversible
+
+git checkout . : discards unstaged tracked changes in working directory
+
+git clean -f : removes unstaged untracked files
+
+git checkout master : checkout the most recent commit in the repository
+
+?How can you use the staging area to make sure you have one commit per logical change?
+>Add only the files related to the logical change being committed and leave the others for another commit
+
+git branch : shows all branches
+git branch -a : shows all branches and remotes
+* in git branch output shows which branch is currently checked out
+
+?What are some situations when branches would be helpful in keeping your history organized? How would branches help?
+> When some experimental features are introduced, when parallel features are implemented
+
+git log --graph --oneline <branch 1> <branch 2> : shows branch tree
+
+git branch <branch name> : creates new branch on the current commit
+
+?How do the diagrams help you visualize the branch structure?
+>Then show where the structure of the commit tree
+
+Branch is a label on a commit. Deleting a branch on a reachable commit does not affect commit. Deleting branch on otherwise unreachable commit effectively abandons the commits in that branch
+
+git branch -d <branch name> : deletes a branch (label) but not commits in that branch unless they are otherwise unreachanble
+
+git branch -b <branch name> == git branch <branch name>; git checkout <branch name>
+
+git merge <dest branch> <branch to merge> : merges <branch to merge> into <dest branch>, creates a new commit and points the head of <dest branch> to that commit
+
+When merging branches checkout the branch you are merging into because it will update after the merge
+
+git merge --abort : aborts current merge
+
+git log after merging will show commits from both branches interleaved and sorted using timestamp, however each commit still remembers its parent
+
+git show <commit id> : shows changes introduced by the commit compared to its actual parent even if another commit was interleaved between the commit and its parent as a result of merge
+
+?What is the result of merging two branches together? Why do we represent it in the diagram the way we do?
+>Merge results in additional commit that adds changes from a branch into another branch by adding heads of both branches to be parents of that commit and moving head of the branch being merged to that commit.
+
+?What are the pros and cons of Git’s automatic merging vs. always doing merges manually?
+>It speeds up merging process when merge is inambiguous
+
+
+GitHub
+
+GitHub is free for public repos and charges for private ones
+
+Setting SSH credentials for GitHub: https://help.github.com/articles/generating-an-ssh-key/
+
+working directory -> staging area -> local repository -> GitHub repository
+
+remote - remote repository with known location
+
+git remote : shows current remotes
+git remote -v : shows remotes with their URLs
+git remote add <remote name> <url> : 
+
+
+
+
+
+
+
+
+
+
+
+
+git config --global user.name "Your Name"
+
+git config --global core.autocrlf true : fixes merge problems for Windows line endings (see: https://help.github.com/articles/dealing-with-line-endings/#platform-all)
+
+
+
+
